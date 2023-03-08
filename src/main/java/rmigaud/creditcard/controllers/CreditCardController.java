@@ -25,14 +25,13 @@ public class CreditCardController {
       cards.save(card);
       return true;
     }
-
     return false;
   }
 
   private int getScore(String ssn) {
     try {
       return Objects.requireNonNull(restTemplate.getForObject(
-          "http://localhost:8080/creditscores/" + ssn, CreditScore.class))
+          "http://localhost:8080/check/creditscores/" + ssn, CreditScore.class))
           .getScore();
     } catch (NullPointerException npe) {
       return -1;
